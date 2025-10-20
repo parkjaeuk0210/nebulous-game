@@ -181,14 +181,14 @@ function updateGame() {
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist > 1) {
-                const speed = Math.max(2.5, 5 - cell.radius / 10);
-                cell.vx += (dx / dist) * speed * 0.1;
-                cell.vy += (dy / dist) * speed * 0.1;
+                const speed = Math.max(5, 10 - cell.radius / 10);
+                cell.vx += (dx / dist) * speed * 0.15;
+                cell.vy += (dy / dist) * speed * 0.15;
             }
 
             // 마찰
-            cell.vx *= 0.9;
-            cell.vy *= 0.9;
+            cell.vx *= 0.92;
+            cell.vy *= 0.92;
 
             // 위치 업데이트
             cell.x += cell.vx;
