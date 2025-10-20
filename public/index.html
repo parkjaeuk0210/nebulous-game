@@ -12,7 +12,8 @@
         <input type="text" id="playerName" placeholder="이름을 입력하세요" maxlength="15" autocomplete="off">
         <button id="playButton">플레이</button>
         <div class="info">
-            <p>마우스로 이동 • 스페이스바로 분열 • W키로 먹이 방출</p>
+            <p>마우스/터치로 이동 • 스페이스바로 분열 • W키로 먹이 방출</p>
+            <p class="mobile-info">📱 모바일: 화면 터치로 이동, 하단 버튼 사용</p>
         </div>
     </div>
 
@@ -24,6 +25,10 @@
                 <h3>리더보드</h3>
                 <ol id="leaderboardList"></ol>
             </div>
+        </div>
+        <div id="mobileControls">
+            <button id="splitBtn" class="mobile-btn">분열</button>
+            <button id="ejectBtn" class="mobile-btn">방출</button>
         </div>
     </div>
 

@@ -84,6 +84,32 @@ canvas.addEventListener('mousemove', (e) => {
     }
 });
 
+// 터치 이벤트 (모바일 지원)
+canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    mouse.x = touch.clientX;
+    mouse.y = touch.clientY;
+
+    if (ws && ws.readyState === WebSocket.OPEN) {
+        const worldX = (mouse.x - canvas.width / 2) / camera.zoom + camera.x;
+        const worldY = (mouse.y - canvas.height / 2) / camera.zoom + camera.y;
+
+        ws.send(JSON.stringify({
+            type: 'move',
+            x: worldX,
+            y: worldY
+        }));
+    }
+}, { passive: false });
+
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    mouse.x = touch.clientX;
+    mouse.y = touch.clientY;
+}, { passive: false });
+
 // 키보드 이벤트
 window.addEventListener('keydown', (e) => {
     if (!ws || ws.readyState !== WebSocket.OPEN) return;
@@ -92,6 +118,36 @@ window.addEventListener('keydown', (e) => {
         e.preventDefault();
         ws.send(JSON.stringify({ type: 'split' }));
     } else if (e.key === 'w' || e.key === 'W') {
+        ws.send(JSON.stringify({ type: 'eject' }));
+    }
+});
+
+// 모바일 버튼 이벤트
+const splitBtn = document.getElementById('splitBtn');
+const ejectBtn = document.getElementById('ejectBtn');
+
+splitBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'split' }));
+    }
+});
+
+splitBtn.addEventListener('click', (e) => {
+    if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'split' }));
+    }
+});
+
+ejectBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'eject' }));
+    }
+});
+
+ejectBtn.addEventListener('click', (e) => {
+    if (ws && ws.readyState === WebSocket.OPEN) {
         ws.send(JSON.stringify({ type: 'eject' }));
     }
 });
