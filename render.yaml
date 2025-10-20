@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: nebulous-game
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18.0.0
