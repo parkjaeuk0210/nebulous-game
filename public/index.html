@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nebulous - 멀티플레이어 게임</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="menu" class="menu">
+        <h1>NEBULOUS</h1>
+        <input type="text" id="playerName" placeholder="이름을 입력하세요" maxlength="15" autocomplete="off">
+        <button id="playButton">플레이</button>
+        <div class="info">
+            <p>마우스로 이동 • 스페이스바로 분열 • W키로 먹이 방출</p>
+        </div>
+    </div>
+
+    <div id="gameContainer" style="display: none;">
+        <canvas id="gameCanvas"></canvas>
+        <div id="hud">
+            <div id="score">점수: 0</div>
+            <div id="leaderboard">
+                <h3>리더보드</h3>
+                <ol id="leaderboardList"></ol>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
